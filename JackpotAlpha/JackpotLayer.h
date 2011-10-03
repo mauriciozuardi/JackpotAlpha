@@ -18,4 +18,6 @@
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
 
+-(int)getRandomNumber:(int)from to:(int)to;
+
 @end
