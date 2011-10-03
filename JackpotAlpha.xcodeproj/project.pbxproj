@@ -165,6 +165,8 @@
 		11F6229E1439FDF400160C8A /* card6.png in Resources */ = {isa = PBXBuildFile; fileRef = 11F622921439FDF400160C8A /* card6.png */; };
 		11F622A11439FE5200160C8A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 11F6229F1439FE5200160C8A /* Default.png */; };
 		11F622A21439FE5200160C8A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11F622A01439FE5200160C8A /* Default@2x.png */; };
+		11F622A4143A17DC00160C8A /* SlotLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 11F622A3143A17DC00160C8A /* SlotLocation.png */; };
+		11F622A6143A1A4A00160C8A /* SlotLocation-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 11F622A5143A1A4A00160C8A /* SlotLocation-hd.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -445,6 +447,8 @@
 		11F622921439FDF400160C8A /* card6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card6.png; sourceTree = "<group>"; };
 		11F6229F1439FE5200160C8A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
 		11F622A01439FE5200160C8A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/Default@2x.png"; sourceTree = "<group>"; };
+		11F622A3143A17DC00160C8A /* SlotLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SlotLocation.png; path = Resources/SlotLocation.png; sourceTree = "<group>"; };
+		11F622A5143A1A4A00160C8A /* SlotLocation-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SlotLocation-hd.png"; path = "Resources/SlotLocation-hd.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -518,6 +522,8 @@
 		11871D131439F7AE00B91ADE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				11F622A5143A1A4A00160C8A /* SlotLocation-hd.png */,
+				11F622A3143A17DC00160C8A /* SlotLocation.png */,
 				11F6229F1439FE5200160C8A /* Default.png */,
 				11F622A01439FE5200160C8A /* Default@2x.png */,
 				11F622861439FDF400160C8A /* cards */,
@@ -1011,6 +1017,8 @@
 				11F6229E1439FDF400160C8A /* card6.png in Resources */,
 				11F622A11439FE5200160C8A /* Default.png in Resources */,
 				11F622A21439FE5200160C8A /* Default@2x.png in Resources */,
+				11F622A4143A17DC00160C8A /* SlotLocation.png in Resources */,
+				11F622A6143A1A4A00160C8A /* SlotLocation-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
