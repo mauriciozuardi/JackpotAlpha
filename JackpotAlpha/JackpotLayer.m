@@ -9,6 +9,17 @@
 // Import the interfaces
 #import "JackpotLayer.h"
 
+CCSprite *card1;
+CCSprite *card2;
+CCSprite *card3;
+
+//CCSprite *card4;
+//CCSprite *card5;
+//CCSprite *card6;
+//CCSprite *card7;
+//CCSprite *card8;
+//CCSprite *card9;
+
 // JackpotLayer implementation
 @implementation JackpotLayer
 
@@ -33,18 +44,33 @@
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
-		
-		// create and initialize a Label
-		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Hello World" fontName:@"Marker Felt" fontSize:64];
         
-		// ask director the the window size
-		CGSize size = [[CCDirector sharedDirector] winSize];
+        //CRIA AS SPRITES        
+//        int cardWidth = 112;
+        int cardHeight = 150;
         
-		// position the label on the center of the screen
-		label.position =  ccp( size.width /2 , size.height/2 );
-		
-		// add the label as a child to this Layer
-		[self addChild: label];
+        //cria a sprite, a reposiciona e coloca na tela
+        card1 = [CCSprite spriteWithFile:@"card1.png"];
+        card1.position = ccp(240,(160-(0*cardHeight)));
+        [self addChild:card1];
+        
+        //cria a sprite, a reposiciona e coloca na tela
+        card2 = [CCSprite spriteWithFile:@"card2.png"];
+        card2.position = ccp(240,(160-(1*cardHeight)));
+        [self addChild:card2];
+        
+        //cria a sprite, a reposiciona e coloca na tela
+        card3 = [CCSprite spriteWithFile:@"card3.png"];
+        card3.position = ccp(240,(160-(2*cardHeight)));
+        [self addChild:card3];
+        
+//        //coloca toscamente as outras para medir a performance
+//        card4 = [CCSprite spriteWithFile:@"card1.png"]; card4.position = ccp(0,0); [self addChild:card4];
+//        card5 = [CCSprite spriteWithFile:@"card1.png"]; card5.position = ccp(0,0); [self addChild:card5];
+//        card6 = [CCSprite spriteWithFile:@"card1.png"]; card6.position = ccp(0,0); [self addChild:card6];
+//        card7 = [CCSprite spriteWithFile:@"card1.png"]; card7.position = ccp(0,0); [self addChild:card7];
+//        card8 = [CCSprite spriteWithFile:@"card1.png"]; card8.position = ccp(0,0); [self addChild:card8];
+//        card9 = [CCSprite spriteWithFile:@"card1.png"]; card9.position = ccp(0,0); [self addChild:card9];
 	}
 	return self;
 }
@@ -53,8 +79,6 @@
 - (void) dealloc
 {
 	// in case you have something to dealloc, do it in this method
-	// in this particular example nothing needs to be released.
-	// cocos2d will automatically release all the children (Label)
 	
 	// don't forget to call "super dealloc"
 	[super dealloc];
