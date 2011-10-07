@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		112B717E143F1878006A6904 /* CCCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 112B717D143F1878006A6904 /* CCCard.m */; };
 		11871D031439F7AE00B91ADE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11871D021439F7AE00B91ADE /* QuartzCore.framework */; };
 		11871D051439F7AE00B91ADE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11871D041439F7AE00B91ADE /* OpenGLES.framework */; };
 		11871D071439F7AE00B91ADE /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11871D061439F7AE00B91ADE /* OpenAL.framework */; };
@@ -170,6 +171,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		112B717C143F1878006A6904 /* CCCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCCard.h; sourceTree = "<group>"; };
+		112B717D143F1878006A6904 /* CCCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCCard.m; sourceTree = "<group>"; };
 		11871CFE1439F7AE00B91ADE /* JackpotAlpha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JackpotAlpha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11871D021439F7AE00B91ADE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		11871D041439F7AE00B91ADE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -511,6 +514,8 @@
 				11871EA61439F7B000B91ADE /* RootViewController.m */,
 				11F6226A1439F84000160C8A /* JackpotLayer.h */,
 				11F6226B1439F84000160C8A /* JackpotLayer.m */,
+				112B717C143F1878006A6904 /* CCCard.h */,
+				112B717D143F1878006A6904 /* CCCard.m */,
 				11871D131439F7AE00B91ADE /* Resources */,
 				11871D291439F7AE00B91ADE /* Shaders */,
 				11871D601439F7AE00B91ADE /* libs */,
@@ -1128,6 +1133,7 @@
 				11871EA41439F7B000B91ADE /* AppDelegate.m in Sources */,
 				11871EA71439F7B000B91ADE /* RootViewController.m in Sources */,
 				11F6226C1439F84000160C8A /* JackpotLayer.m in Sources */,
+				112B717E143F1878006A6904 /* CCCard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

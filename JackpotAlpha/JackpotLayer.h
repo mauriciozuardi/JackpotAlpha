@@ -18,6 +18,7 @@
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
 
+// retorna um número randômico usando arc4random
 -(int)getRandomNumber:(int)from to:(int)to;
 
 @end
