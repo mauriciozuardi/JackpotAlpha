@@ -141,200 +141,203 @@ float speedColuna3;
 
 - (void) nextFrame:(ccTime)dt {
     
-    int snapLimit = 3;
+    int snapLimit = 15;
     float atrito = .95;
     
     //MANTÉM O GIRO
-    //atualiza a nova posição das cartas (aplica a velocidade)
-    card1.position = ccp(card1.position.x, card1.position.y - speedColuna1);
-    card2.position = ccp(card2.position.x, card2.position.y - speedColuna1);
-    card3.position = ccp(card3.position.x, card3.position.y - speedColuna1);
+    //aplica a velocidade
+    CGPoint newC1Position = ccp(card1.position.x, card1.position.y - speedColuna1);
+    CGPoint newC2Position = ccp(card2.position.x, card2.position.y - speedColuna1);
+    CGPoint newC3Position = ccp(card3.position.x, card3.position.y - speedColuna1);
     
-    card4.position = ccp(card4.position.x, card4.position.y - speedColuna2);
-    card5.position = ccp(card5.position.x, card5.position.y - speedColuna2);
-    card6.position = ccp(card6.position.x, card6.position.y - speedColuna2);
+    //define as distancias
+    float d1 = card1.position.y - defaultCardY;
+    float d2 = card2.position.y - defaultCardY;
+    float d3 = card3.position.y - defaultCardY;
     
-    card7.position = ccp(card7.position.x, card7.position.y - speedColuna3);
-    card8.position = ccp(card8.position.x, card8.position.y - speedColuna3);
-    card9.position = ccp(card9.position.x, card9.position.y - speedColuna3);
+    //define quem está mais próximo
+    int cci1 = [self getClosestCardIndexWithD1:d1 D2:d2 andD3:d3];
+    
+    //SNAP COLUNA 1
+    if (speedColuna1 < snapLimit && speedColuna1 > 0 && !snapTargetsDefinedColuna1) {
+        snapTargetsDefinedColuna1 = YES;
+    } else if (snapTargetsDefinedColuna1){
+        //NEW SMOOTH
+        float div = 30;
+        float speedDelta1 = 0;
+        
+        if (cci1 == 1) {
+            speedDelta1 = d1/div;
+        } else if (cci1 == 2) {
+            speedDelta1 = d2/div;
+        } else if (cci1 == 3) {
+            speedDelta1 = d3/div;
+        }
+
+        speedColuna1 += speedDelta1;
+        speedColuna1 *= .95;
+        //SNAP FINAL
+        if(abs(speedDelta1) < .001){
+            snapTargetsDefinedColuna1 = NO;
+//            speedColuna1 = 0;
+            NSLog(@"Coluna1: Carta %d", cci1);
+        }
+    }
+    
+//    //SNAP COLUNA 2
+//    if (speedColuna2 < snapLimit) {
+//        //define as distancias
+//        float d4 = card4.position.y - defaultCardY;
+//        float d5 = card5.position.y - defaultCardY;
+//        float d6 = card6.position.y - defaultCardY;
+//        
+//        //identifica quem está mais perto e define os alvos
+//        if(!snapTargetsDefinedColuna2){
+//            if(abs(d4)<cardHeight/2){
+//                //card 4 é a mais próxima
+//                card4.yAlvo = defaultCardY;
+//                //define o alvo das outras
+//                card5.yAlvo = round(card5.position.y - d4);
+//                card6.yAlvo = round(card6.position.y - d4);
+//                NSLog(@"1 - Dark Ripper (col.2) (%f, %f, %f)", card4.yAlvo, card5.yAlvo, card6.yAlvo);
+//            } else if(abs(d5)<cardHeight/2){
+//                //card 5 é a mais próxima
+//                card5.yAlvo = defaultCardY;
+//                //define o alvo das outras
+//                card4.yAlvo = round(card4.position.y - d5);
+//                card6.yAlvo = round(card6.position.y - d5);
+//                NSLog(@"2 - Forest Brute (col.2) (%f, %f, %f)", card4.yAlvo, card5.yAlvo, card6.yAlvo);
+//            } else if(abs(d6)<cardHeight/2){
+//                //card 6 é a mais próxima
+//                card6.yAlvo = defaultCardY;
+//                //define o alvo das outras
+//                card5.yAlvo = round(card5.position.y - d6);
+//                card4.yAlvo = round(card4.position.y - d6);
+//                NSLog(@"3 - Tesla, the Hastah (col.2) (%f, %f, %f)", card4.yAlvo, card5.yAlvo, card6.yAlvo);
+//            }
+//            
+//            //avisa que já calculou
+//            snapTargetsDefinedColuna2 = YES;
+//            
+//        } else {
+//            //SMOOTH
+//            speedColuna2 *= .5;
+//            card4.position = ccp(card4.position.x, card4.position.y + (card4.yAlvo - card4.position.y)/20);
+//            card5.position = ccp(card5.position.x, card5.position.y + (card5.yAlvo - card5.position.y)/20);
+//            card6.position = ccp(card6.position.x, card6.position.y + (card6.yAlvo - card6.position.y)/20);        
+//        }
+//        
+//    } else {
+//        //HARD
+//        if(card4.position.y < defaultCardY - (1.5 * cardHeight)){
+//            card4.position = ccp(card4.position.x, card4.position.y + (3*cardHeight));
+//        }
+//        if(card5.position.y < defaultCardY - (1.5 * cardHeight)){
+//            card5.position = ccp(card5.position.x, card5.position.y + (3*cardHeight));
+//        }
+//        if(card6.position.y < defaultCardY - (1.5 * cardHeight)){
+//            card6.position = ccp(card6.position.x, card6.position.y + (3*cardHeight));
+//        }
+//    }
+//
+//    
+//    //SNAP COLUNA 3
+//    if (speedColuna3 < snapLimit) {
+//        //define as distancias
+//        float d7 = card7.position.y - defaultCardY;
+//        float d8 = card8.position.y - defaultCardY;
+//        float d9 = card9.position.y - defaultCardY;
+//        
+//        //identifica quem está mais perto e define os alvos
+//        if(!snapTargetsDefinedColuna3){
+//            if(abs(d7)<cardHeight/2){
+//                //card 4 é a mais próxima
+//                card7.yAlvo = defaultCardY;
+//                //define o alvo das outras
+//                card8.yAlvo = round(card8.position.y - d7);
+//                card9.yAlvo = round(card9.position.y - d7);
+//                NSLog(@"1 - Dark Ripper (col.3) (%f, %f, %f)", card7.yAlvo, card8.yAlvo, card9.yAlvo);
+//            } else if(abs(d8)<cardHeight/2){
+//                //card 5 é a mais próxima
+//                card8.yAlvo = defaultCardY;
+//                //define o alvo das outras
+//                card7.yAlvo = round(card7.position.y - d8);
+//                card9.yAlvo = round(card9.position.y - d8);
+//                NSLog(@"2 - Forest Brute (col.3) (%f, %f, %f)", card7.yAlvo, card8.yAlvo, card9.yAlvo);
+//            } else if(abs(d9)<cardHeight/2){
+//                //card 6 é a mais próxima
+//                card9.yAlvo = defaultCardY;
+//                //define o alvo das outras
+//                card8.yAlvo = round(card8.position.y - d9);
+//                card7.yAlvo = round(card7.position.y - d9);
+//                NSLog(@"3 - Tesla, the Hastah (col.3) (%f, %f, %f)", card7.yAlvo, card8.yAlvo, card9.yAlvo);
+//            }
+//            
+//            //avisa que já calculou
+//            snapTargetsDefinedColuna3 = YES;
+//            
+//        } else {
+//            //SMOOTH
+//            speedColuna3 *= .5;
+//            card7.position = ccp(card7.position.x, card7.position.y + (card7.yAlvo - card7.position.y)/20);
+//            card8.position = ccp(card8.position.x, card8.position.y + (card8.yAlvo - card8.position.y)/20);
+//            card9.position = ccp(card9.position.x, card9.position.y + (card9.yAlvo - card9.position.y)/20);        
+//        }
+//        
+//    } else {
+//        //HARD
+//        if(card7.position.y < defaultCardY - (1.5 * cardHeight)){
+//            card7.position = ccp(card7.position.x, card7.position.y + (3*cardHeight));
+//        }
+//        if(card8.position.y < defaultCardY - (1.5 * cardHeight)){
+//            card8.position = ccp(card8.position.x, card8.position.y + (3*cardHeight));
+//        }
+//        if(card9.position.y < defaultCardY - (1.5 * cardHeight)){
+//            card9.position = ccp(card9.position.x, card9.position.y + (3*cardHeight));
+//        }
+//    }
+    
+    //mantém dentro da tela
+    if(newC1Position.y < defaultCardY - (1.5 * cardHeight)){
+        newC1Position = ccp(newC1Position.x, newC1Position.y + (3*cardHeight));
+    }
+    if(newC2Position.y < defaultCardY - (1.5 * cardHeight)){
+        newC2Position = ccp(newC2Position.x, newC2Position.y + (3*cardHeight));
+    }
+    if(newC3Position.y < defaultCardY - (1.5 * cardHeight)){
+        newC3Position = ccp(newC3Position.x, newC3Position.y + (3*cardHeight));
+    }
+    
+    //reposiciona as cartas
+    card1.position = newC1Position;
+    card2.position = newC2Position;
+    card3.position = newC3Position;
     
     //aplica o atrito
     speedColuna1 *= atrito;
     speedColuna2 *= atrito;
     speedColuna3 *= atrito;
-    
-    //SNAP COLUNA 1
-    if (speedColuna1 < snapLimit) {
-        //define as distancias
-        float d1 = card1.position.y - defaultCardY;
-        float d2 = card2.position.y - defaultCardY;
-        float d3 = card3.position.y - defaultCardY;
-
-        //identifica quem está mais perto e define os alvos
-        if(!snapTargetsDefinedColuna1){
-            if(abs(d1)<cardHeight/2){
-                //card 1 é a mais próxima
-                card1.yAlvo = defaultCardY;
-                //define o alvo das outras
-                card2.yAlvo = round(card2.position.y - d1);
-                card3.yAlvo = round(card3.position.y - d1);
-                NSLog(@"1 - Dark Ripper (%f, %f, %f)", card1.yAlvo, card2.yAlvo, card3.yAlvo);
-            } else if(abs(d2)<cardHeight/2){
-                //card 2 é a mais próxima
-                card2.yAlvo = defaultCardY;
-                //define o alvo das outras
-                card1.yAlvo = round(card1.position.y - d2);
-                card3.yAlvo = round(card3.position.y - d2);
-                NSLog(@"2 - Forest Brute (%f, %f, %f)", card1.yAlvo, card2.yAlvo, card3.yAlvo);
-            } else if(abs(d3)<cardHeight/2){
-                //card 3 é a mais próxima
-                card3.yAlvo = defaultCardY;
-                //define o alvo das outras
-                card2.yAlvo = round(card2.position.y - d3);
-                card1.yAlvo = round(card1.position.y - d3);
-                NSLog(@"3 - Tesla, the Hastah (%f, %f, %f)", card1.yAlvo, card2.yAlvo, card3.yAlvo);
-            }
-            
-            //avisa que já calculou
-            snapTargetsDefinedColuna1 = YES;
-            
-        } else {
-            //SMOOTH
-            speedColuna1 *= .5;
-            card1.position = ccp(card1.position.x, card1.position.y + (card1.yAlvo - card1.position.y)/20);
-            card2.position = ccp(card2.position.x, card2.position.y + (card2.yAlvo - card2.position.y)/20);
-            card3.position = ccp(card3.position.x, card3.position.y + (card3.yAlvo - card3.position.y)/20);        
-        }
-        
-    } else {
-        //HARD
-        if(card1.position.y < defaultCardY - (1.5 * cardHeight)){
-            card1.position = ccp(card1.position.x, card1.position.y + (3*cardHeight));
-        }
-        if(card2.position.y < defaultCardY - (1.5 * cardHeight)){
-            card2.position = ccp(card2.position.x, card2.position.y + (3*cardHeight));
-        }
-        if(card3.position.y < defaultCardY - (1.5 * cardHeight)){
-            card3.position = ccp(card3.position.x, card3.position.y + (3*cardHeight));
-        }
-    }
-    
-    //SNAP COLUNA 2
-    if (speedColuna2 < snapLimit) {
-        //define as distancias
-        float d4 = card4.position.y - defaultCardY;
-        float d5 = card5.position.y - defaultCardY;
-        float d6 = card6.position.y - defaultCardY;
-        
-        //identifica quem está mais perto e define os alvos
-        if(!snapTargetsDefinedColuna2){
-            if(abs(d4)<cardHeight/2){
-                //card 4 é a mais próxima
-                card4.yAlvo = defaultCardY;
-                //define o alvo das outras
-                card5.yAlvo = round(card5.position.y - d4);
-                card6.yAlvo = round(card6.position.y - d4);
-                NSLog(@"1 - Dark Ripper (col.2) (%f, %f, %f)", card4.yAlvo, card5.yAlvo, card6.yAlvo);
-            } else if(abs(d5)<cardHeight/2){
-                //card 5 é a mais próxima
-                card5.yAlvo = defaultCardY;
-                //define o alvo das outras
-                card4.yAlvo = round(card4.position.y - d5);
-                card6.yAlvo = round(card6.position.y - d5);
-                NSLog(@"2 - Forest Brute (col.2) (%f, %f, %f)", card4.yAlvo, card5.yAlvo, card6.yAlvo);
-            } else if(abs(d6)<cardHeight/2){
-                //card 6 é a mais próxima
-                card6.yAlvo = defaultCardY;
-                //define o alvo das outras
-                card5.yAlvo = round(card5.position.y - d6);
-                card4.yAlvo = round(card4.position.y - d6);
-                NSLog(@"3 - Tesla, the Hastah (col.2) (%f, %f, %f)", card4.yAlvo, card5.yAlvo, card6.yAlvo);
-            }
-            
-            //avisa que já calculou
-            snapTargetsDefinedColuna2 = YES;
-            
-        } else {
-            //SMOOTH
-            speedColuna2 *= .5;
-            card4.position = ccp(card4.position.x, card4.position.y + (card4.yAlvo - card4.position.y)/20);
-            card5.position = ccp(card5.position.x, card5.position.y + (card5.yAlvo - card5.position.y)/20);
-            card6.position = ccp(card6.position.x, card6.position.y + (card6.yAlvo - card6.position.y)/20);        
-        }
-        
-    } else {
-        //HARD
-        if(card4.position.y < defaultCardY - (1.5 * cardHeight)){
-            card4.position = ccp(card4.position.x, card4.position.y + (3*cardHeight));
-        }
-        if(card5.position.y < defaultCardY - (1.5 * cardHeight)){
-            card5.position = ccp(card5.position.x, card5.position.y + (3*cardHeight));
-        }
-        if(card6.position.y < defaultCardY - (1.5 * cardHeight)){
-            card6.position = ccp(card6.position.x, card6.position.y + (3*cardHeight));
-        }
-    }
-
-    
-    //SNAP COLUNA 3
-    if (speedColuna3 < snapLimit) {
-        //define as distancias
-        float d7 = card7.position.y - defaultCardY;
-        float d8 = card8.position.y - defaultCardY;
-        float d9 = card9.position.y - defaultCardY;
-        
-        //identifica quem está mais perto e define os alvos
-        if(!snapTargetsDefinedColuna3){
-            if(abs(d7)<cardHeight/2){
-                //card 4 é a mais próxima
-                card7.yAlvo = defaultCardY;
-                //define o alvo das outras
-                card8.yAlvo = round(card8.position.y - d7);
-                card9.yAlvo = round(card9.position.y - d7);
-                NSLog(@"1 - Dark Ripper (col.3) (%f, %f, %f)", card7.yAlvo, card8.yAlvo, card9.yAlvo);
-            } else if(abs(d8)<cardHeight/2){
-                //card 5 é a mais próxima
-                card8.yAlvo = defaultCardY;
-                //define o alvo das outras
-                card7.yAlvo = round(card7.position.y - d8);
-                card9.yAlvo = round(card9.position.y - d8);
-                NSLog(@"2 - Forest Brute (col.3) (%f, %f, %f)", card7.yAlvo, card8.yAlvo, card9.yAlvo);
-            } else if(abs(d9)<cardHeight/2){
-                //card 6 é a mais próxima
-                card9.yAlvo = defaultCardY;
-                //define o alvo das outras
-                card8.yAlvo = round(card8.position.y - d9);
-                card7.yAlvo = round(card7.position.y - d9);
-                NSLog(@"3 - Tesla, the Hastah (col.3) (%f, %f, %f)", card7.yAlvo, card8.yAlvo, card9.yAlvo);
-            }
-            
-            //avisa que já calculou
-            snapTargetsDefinedColuna3 = YES;
-            
-        } else {
-            //SMOOTH
-            speedColuna3 *= .5;
-            card7.position = ccp(card7.position.x, card7.position.y + (card7.yAlvo - card7.position.y)/20);
-            card8.position = ccp(card8.position.x, card8.position.y + (card8.yAlvo - card8.position.y)/20);
-            card9.position = ccp(card9.position.x, card9.position.y + (card9.yAlvo - card9.position.y)/20);        
-        }
-        
-    } else {
-        //HARD
-        if(card7.position.y < defaultCardY - (1.5 * cardHeight)){
-            card7.position = ccp(card7.position.x, card7.position.y + (3*cardHeight));
-        }
-        if(card8.position.y < defaultCardY - (1.5 * cardHeight)){
-            card8.position = ccp(card8.position.x, card8.position.y + (3*cardHeight));
-        }
-        if(card9.position.y < defaultCardY - (1.5 * cardHeight)){
-            card9.position = ccp(card9.position.x, card9.position.y + (3*cardHeight));
-        }
-    }
 }
 
 -(int)getRandomNumber:(int)from to:(int)to {
     return (int)from + arc4random() % (to-from+1);
+}
+
+-(int)getClosestCardIndexWithD1:(float)d1 D2:(float)d2 andD3:(float)d3 {
+    if (abs(d1) < min(abs(d2), abs(d3))) {
+        return 1;
+    } else if (abs(d2) < min(abs(d1), abs(d3))) {
+        return 2;
+    } else if (abs(d3) < min(abs(d2), abs(d1))) {
+        return 3;
+    } else if (abs(d1) <= min(abs(d2), abs(d3))) {
+        return 1;
+    } else if (abs(d2) <= min(abs(d1), abs(d3))) {
+        return 2;
+    } else if (abs(d3) <= min(abs(d2), abs(d1))) {
+        return 3;
+    }
+    return 0;
 }
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
