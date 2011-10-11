@@ -151,6 +151,7 @@
 		11871EA11439F7B000B91ADE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 11871EA01439F7B000B91ADE /* main.m */; };
 		11871EA41439F7B000B91ADE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11871EA31439F7B000B91ADE /* AppDelegate.m */; };
 		11871EA71439F7B000B91ADE /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11871EA61439F7B000B91ADE /* RootViewController.m */; };
+		11C3A35E1444E2ED006FC1CE /* Coluna.m in Sources */ = {isa = PBXBuildFile; fileRef = 11C3A35D1444E2ED006FC1CE /* Coluna.m */; };
 		11F6226C1439F84000160C8A /* JackpotLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F6226B1439F84000160C8A /* JackpotLayer.m */; };
 		11F622931439FDF400160C8A /* card1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 11F622871439FDF400160C8A /* card1-hd.png */; };
 		11F622941439FDF400160C8A /* card1.png in Resources */ = {isa = PBXBuildFile; fileRef = 11F622881439FDF400160C8A /* card1.png */; };
@@ -434,6 +435,8 @@
 		11871EA31439F7B000B91ADE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		11871EA51439F7B000B91ADE /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		11871EA61439F7B000B91ADE /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		11C3A35C1444E2ED006FC1CE /* Coluna.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coluna.h; sourceTree = "<group>"; };
+		11C3A35D1444E2ED006FC1CE /* Coluna.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coluna.m; sourceTree = "<group>"; };
 		11F6226A1439F84000160C8A /* JackpotLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JackpotLayer.h; sourceTree = "<group>"; };
 		11F6226B1439F84000160C8A /* JackpotLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JackpotLayer.m; sourceTree = "<group>"; };
 		11F622871439FDF400160C8A /* card1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card1-hd.png"; sourceTree = "<group>"; };
@@ -514,6 +517,8 @@
 				11871EA61439F7B000B91ADE /* RootViewController.m */,
 				11F6226A1439F84000160C8A /* JackpotLayer.h */,
 				11F6226B1439F84000160C8A /* JackpotLayer.m */,
+				11C3A35C1444E2ED006FC1CE /* Coluna.h */,
+				11C3A35D1444E2ED006FC1CE /* Coluna.m */,
 				112B717C143F1878006A6904 /* CCCard.h */,
 				112B717D143F1878006A6904 /* CCCard.m */,
 				11871D131439F7AE00B91ADE /* Resources */,
@@ -1134,6 +1139,7 @@
 				11871EA71439F7B000B91ADE /* RootViewController.m in Sources */,
 				11F6226C1439F84000160C8A /* JackpotLayer.m in Sources */,
 				112B717E143F1878006A6904 /* CCCard.m in Sources */,
+				11C3A35E1444E2ED006FC1CE /* Coluna.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

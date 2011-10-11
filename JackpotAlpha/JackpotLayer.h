@@ -9,6 +9,8 @@
 // When you import this file, you import all the cocos2d classes
 #import "cocos2d.h"
 #import "CCTouchDispatcher.h"
+#import "CCCard.h"
+#import "Coluna.h"
 
 // JackpotLayer
 @interface JackpotLayer : CCLayer
@@ -23,5 +25,8 @@
 
 // compara 3 distancias e retorna o "index" da mais próxima
 -(int)getClosestCardIndexWithD1:(float)d1 D2:(float)d2 andD3:(float)d3;
+
+//move as cartas de uma determinada coluna
+-(void)updateCardA:(CCSprite*)cardA andCardB:(CCSprite*)cardB andCardC:(CCSprite*)cardC atColum:(Coluna*)c;
 
 @end
